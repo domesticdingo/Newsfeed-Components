@@ -85,6 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: '49ers are great, Rams are trash',
+    date: 'Oct 30th, 2019',
+    firstParagraph: `Boy the Rams really do suck Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit.`,
+    secondParagraph: `49ers are great Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit.`,
+    thirdParagraph: `Superbowl Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit.`
   }
 ];
 
@@ -112,3 +122,43 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articles = document.querySelector('.articles');
+
+data.forEach(x => {
+  articles.appendChild(createArticle(x));
+})
+
+function createArticle (param) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(button);
+
+  article.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton');
+
+  title.textContent = param.title;
+  date.textContent = param.date;
+  firstParagraph.textContent = param.firstParagraph;
+  secondParagraph.textContent = param.secondParagraph;
+  thirdParagraph.textContent = param.thirdParagraph;
+  button.textContent = '	\u02C5';
+
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
